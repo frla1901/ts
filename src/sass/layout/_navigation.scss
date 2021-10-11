@@ -1,0 +1,26 @@
+// navigation styling
+
+// nesting
+nav {
+    ul {
+        list-style: none;
+        width: 100%;
+    }
+    li{
+        display: inline-block;
+        margin: $margin;
+        font-size: $font-xs;
+    }
+    a{
+        display: block;
+        color: $color-navs;
+        font-size: $font-xs;
+        border: $border;
+        border-radius: $border-rad;        
+        padding: 6px 12px;
+        text-decoration: none;
+    }
+    a:hover {
+        border:$border-hover;
+    }
+}

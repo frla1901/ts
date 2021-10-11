@@ -1,0 +1,12 @@
+// Mixins
+@mixin grid($cols, $mgn) {
+    float: left;
+    margin-right: $mgn;
+    margin-left: $mgn;
+
+    // calculating width by using sass:math
+    width: math.div(100% - (($cols - 1)), $cols);
+    &:nth-child(#{$cols}n) {
+        margin-right: 0;
+    }
+}

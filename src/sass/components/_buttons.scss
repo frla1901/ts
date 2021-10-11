@@ -1,0 +1,17 @@
+// button styling using variables
+button {
+    color: $color-navs;
+    background-color: $bg-color-header;
+    border: $border;
+    border-radius: $border-rad;
+    font-family: $font-special;
+    font-size: $font-xs;
+    margin: $margin;
+    padding: $padding;
+}
+
+button:hover {
+    color: $color-hover;
+    border: $border-hover;
+    text-decoration: underline;
+}

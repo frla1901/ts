@@ -1,0 +1,33 @@
+//headings styling
+h1 {
+    font-family: $font-headings;
+    color: $color-headings;
+    padding-top: $padding;
+    padding-bottom: $padding-text;
+    text-align: center;
+}
+// Selector inheritance - h1 above
+h1 {
+    @extend h1;
+    font-size: $font-xl;
+}
+h2 {
+    @extend h1;
+    font-size: $font-l;
+}
+h3 {
+    @extend h1;
+    font-size: $font-m;
+}
+h4 {
+    @extend h1;
+    font-size: $font-s;
+}
+h5 {
+    @extend h1;
+    font-size: $font-xs;
+}
+h6 {
+    @extend h1;
+    font-size: $font-xxs;
+}

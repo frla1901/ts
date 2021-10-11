@@ -1,0 +1,31 @@
+/* Simple reset of margins and padding etc + adding box-sizing + font-size adjustment */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol[class],
+ul[class],
+li,
+a,
+section,
+article,
+.container {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    /* 62,5% of standard (16px) = 10px*/
+}

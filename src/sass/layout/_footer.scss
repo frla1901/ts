@@ -1,0 +1,14 @@
+// footer styling
+
+// nesting
+footer {
+    margin: $margin;
+    border-top: 5px solid $color-links;
+    ul {
+        list-style: none;
+        padding-top: $padding;
+    }
+    a {
+        display: block;
+    }
+}

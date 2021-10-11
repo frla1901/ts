@@ -1,0 +1,25 @@
+// Media queries for 2 sizes smaller or larger than 768px
+
+// Setting the width of the grid
+$grid_bp_md: 768; //used for smaller screens
+
+// Mixin - grid
+@media screen and (max-width: $grid_bp_md * 1px) {
+    .wrapper p {
+        @include grid(1, 5%);
+    }
+    p {
+        width: 100%;
+    }
+}
+// Selector inheritance - @mixin grid
+@media screen and (min-width: ($grid_bp_md * 1px) + 1px) {
+    .wrapper p {
+        @include grid(3, 7%);
+    }
+    .list-wrapper,
+    .img-wrapper,
+    .footer-wrapper {
+        @include grid(1, 7%);
+    }
+}

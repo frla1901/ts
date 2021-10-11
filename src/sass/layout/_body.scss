@@ -1,0 +1,37 @@
+// body styling
+
+// nesting
+body {
+    font-family: $font-stack;
+    background-color: $bg-color;
+    color: $color;
+    margin: $margin;
+
+    .date {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: $font-m;
+        padding-top: $padding;
+
+        // if - else if - else
+        $day: Fredag;
+        @if $day == Fredag {
+            color: $color-navs;
+        } @else if $day == Torsdag {
+            color: rgb(64, 64, 64);
+        } @else {
+            color: rgb(128, 128, 128);
+        }
+    }
+    ol {
+        margin: $margin;
+    }
+
+    p,
+    li {
+        font-size: $font-s;
+    }
+    .container {
+        margin: $margin;
+    }
+}
