@@ -4,7 +4,13 @@
     ],
     "compilerOptions" : {
         "noImplicitAny": true,
+        // Ensure that .d.ts files are created by tsc, but not .js files
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        // ensure traspiling to ES5 (2016)
         "target":"ES5",
+        // Ensure that Babel can safely transpile files in the TypeScript project
+        //"isolatedModules": true,
         "sourceMap": true
     }
 }

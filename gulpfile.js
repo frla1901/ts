@@ -74,7 +74,9 @@ function taskJS(){
 // Task 4 - Typsecript - funktion som transpilerar TS
 function taskTypescript() {
     return src(files.tsPath, { sourcemaps:true })
+    .pipe(sourceMaps.init())  
     .pipe(tsProject())
+    .pipe(sourceMaps.write('../maps'))  
     .pipe(dest("pub/js"));
 }
 
