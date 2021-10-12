@@ -1,0 +1,10 @@
+{
+    "include": [
+        "src/typescript/*.ts"
+    ],
+    "compilerOptions" : {
+        "noImplicitAny": true,
+        "target":"ES5",
+        "sourceMap": true
+    }
+}

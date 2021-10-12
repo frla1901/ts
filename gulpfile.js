@@ -16,6 +16,8 @@ const browserSync =require('browser-sync').create();            // Skapa variabe
 const sourceMaps = require('gulp-sourcemaps');                  // Skapar variabel för att kunna se sökväg till källkodsfilen (src inte pub)
 const sass = require('gulp-sass')(require('sass'));             // Skapa variabel för att hämta sass och gulp-sass för att generera/kompilera CSS samt automatisera konverteringen mellan SASS och CSS. 
 const babel = require('gulp-babel');                            // Skapa variabel för att transpilera/skapa bakåt-kompabilitet (js)
+const ts = require('gulp-typescript');
+const tsProject = ts.createProject("tsconfig.json");
 
 const files = {
       // Skapa objekt som lagrar sökvägar
@@ -23,6 +25,7 @@ const files = {
       //cssPath:"src/**/*.css",                 // sökväg till css filerna (src)
       scssPath:"src/**/*.scss",                 // sökväg till SASS filerna (src)
       jsPath:"src/**/*.js",                     // sökväg till js filerna (src)
+      tsPath:"src/typescript/*.ts",             // sökväg till ts filerna (src)
       imagePath:"src/images/*"                  // sökväg till alla olika format i mappen images (src)
 }
 
@@ -68,26 +71,33 @@ function taskJS(){
     .pipe(dest('pub/js'));                  // skicka vidare filerna till pub genom att använda metoden .pipe
 }
 
-// Task 4 - Images - funktion som kopierar/hämtar över alla bildfiler till publicering (pub)
+// Task 4 - Typsecript - funktion som transpilerar TS
+function taskTypescript() {
+    return src(files.tsPath, { sourcemaps:true })
+    .pipe(tsProject())
+    .pipe(dest("pub/js"));
+}
+
+// Task 5 - Images - funktion som kopierar/hämtar över alla bildfiler till publicering (pub)
 function taskImages(){
     return src(files.imagePath)             // gulp metoden src = vilka sökvägar och därmed filer ska hämtas? 
     .pipe (imagemin())                      // minifierar bilder
     .pipe(dest('pub/images'));              // skicka vidare filerna till pub genom att använda metoden .pipe
 }
 
-// Task 5 - Watch - funktion som kontrollerar/övervakar förändringar 
+// Task 6 - Watch - funktion som kontrollerar/övervakar förändringar 
 function taskWatch(){
     browserSync.init({  //initierar browsersynk så att live-server startas upp
         server:"./pub"
     });
 
-    watch([files.htmlPath, files.scssPath, files.jsPath, files.imagePath], // Övervakar dessa filer
-        parallel(taskHTML, taskSCSS, taskJS, taskImages)).on('change', browserSync.reload); // kör dessa parallellt 
+    watch([files.htmlPath, files.scssPath, files.jsPath, files.tsPath, files.imagePath], // Övervakar dessa filer
+        parallel(taskHTML, taskSCSS, taskJS, taskTypescript, taskImages)).on('change', browserSync.reload); // kör dessa parallellt 
 
 }
 
 // exporterar från private till public i serie 
 exports.default = series(
-    parallel(taskHTML, taskSCSS, taskJS, taskImages),  // kör dessa samtidigt/parallellt
+    parallel(taskHTML, taskSCSS, taskJS, taskTypescript, taskImages),  // kör dessa samtidigt/parallellt
     taskWatch // kör därefter funktionen watchTask
     ); 
